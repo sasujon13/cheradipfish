@@ -3,14 +3,45 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './component/header/header.component';
+import { CartComponent } from './component/cart/cart.component';
+import { BlogComponent } from './component/blog/blog.component';
+import { ContactUsComponent } from './component/contact-us/contact-us.component';
+import { AboutUsComponent } from './component/about-us/about-us.component';
+import { FaqsComponent } from './component/faqs/faqs.component';
+import { OrderComponent } from './component/order/order.component';
+import { LoginComponent } from './component/login/login.component';
+import { SignupComponent } from './component/signup/signup.component';
+import { ProductsComponent } from './component/products/products.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FilterPipe } from './shared/filter.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChoiceComponent } from './component/choice/choice.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    CartComponent,
+    BlogComponent,
+    ContactUsComponent,
+    AboutUsComponent,
+    FaqsComponent,
+    OrderComponent,
+    ProductsComponent,
+    ChoiceComponent,
+    LoginComponent,
+    SignupComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
