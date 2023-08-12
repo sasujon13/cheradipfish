@@ -8,12 +8,6 @@ import { ChoiceService } from 'src/app/service/choice.service';
   styleUrls: ['./choice.component.css']
 })
 export class ChoiceComponent implements OnInit {
-    // showCard: boolean = true;
-    // public productList: any;
-    // public filterCategory: any;
-    // searchKey: string = "";
-    // public products : any = [];
-    
   showCard: boolean = true;
   showChoice: boolean = true;
   public productList: any;
