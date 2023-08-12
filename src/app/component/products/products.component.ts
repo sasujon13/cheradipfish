@@ -9,7 +9,6 @@ import { ChoiceService } from 'src/app/service/choice.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  loading: boolean = true;
   showCard: boolean = true;
   showChoice: boolean = true;
   public productList: any;
@@ -30,10 +29,6 @@ export class ProductsComponent implements OnInit {
   constructor(private api: ApiService, private cartService: CartService, private choiceService: ChoiceService) { }
 
   ngOnInit(): void {
-    this.loading = true;
-    document.addEventListener('contextmenu', function (event) {
-      event.preventDefault();
-    });
     this.api.getProducts()
       .subscribe(res => {
         this.productList = res;
@@ -56,46 +51,11 @@ export class ProductsComponent implements OnInit {
             a.size = "l";
           } else if (a.size === "XL") {
             a.size = "xl";
-          } 
-          a.add_to_cart = cartState === 'true'; 
-          a.add_to_choice = choiceState === 'true';                 
+          }
+          a.add_to_cart = cartState === 'true';
+          a.add_to_choice = choiceState === 'true';
           Object.assign(a, { quantity: 1, total: a.price });
         });
-
-        this.cartProductList.forEach((a: any) => {
-          const cartState = localStorage.getItem(`cartState_${a.id}`);
-          if (a.size === "XS") {
-            a.size = "xs";
-          } else if (a.size === "S") {
-            a.size = "s";
-          } else if (a.size === "M") {
-            a.size = "m";
-          } else if (a.size === "L") {
-            a.size = "l";
-          } else if (a.size === "XL") {
-            a.size = "xl";
-          } 
-          a.add_to_cart = cartState === 'true';                  
-          Object.assign(a, { quantity: 1, total: a.price });
-        });
-        
-        this.choiceProductList.forEach((a: any) => {
-          const choiceState = localStorage.getItem(`choiceState_${a.id}`);
-          if (a.size === "XS") {
-            a.size = "xs";
-          } else if (a.size === "S") {
-            a.size = "s";
-          } else if (a.size === "M") {
-            a.size = "m";
-          } else if (a.size === "L") {
-            a.size = "l";
-          } else if (a.size === "XL") {
-            a.size = "xl";
-          } 
-          a.add_to_choice = choiceState === 'true';                  
-          Object.assign(a, { quantity: 1, total: a.price });
-        });
-        this.loading = false;
       });
     this.cartService.search.subscribe((val: any) => {
       this.searchKey = val;
@@ -126,11 +86,11 @@ export class ProductsComponent implements OnInit {
       sessionStorage.setItem('sessionChoiceItems', JSON.stringify(sessionChoiceItems));
       localStorage.setItem(`choiceState_${item.id}`, 'true');
     }
-    else{
+    else {
       this.removeChoiceItem(item);
     }
   }
-  removeChoiceItem(item: any){
+  removeChoiceItem(item: any) {
     this.choiceService.removeChoiceItem(item);
     item.love = false;
   }
@@ -138,14 +98,7 @@ export class ProductsComponent implements OnInit {
     this.showCard = true;
     this.showChoice = true;
   }
-
   filter(size: string) {
     this.filterCategory = this.productList.filter((a: any) => a.size === size || size === '');
-  }
-  filterCart(size: string) {
-    this.filterCategory = this.cartProductList.filter((a: any) => a.size === size || size === '');
-  }
-  filterChoice(size: string) {
-    this.filterCategory = this.choiceProductList.filter((a: any) => a.size === size || size === '');
   }
 }

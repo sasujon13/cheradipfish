@@ -22,15 +22,15 @@ export class BlogComponent implements OnInit {
   
   private applyMargin() {
     const screenWidth = window.innerWidth;
-    let marginLeft: number | string = "auto";
+    // let marginLeft: number | string = "auto";
     
-    if (screenWidth < 1024 && screenWidth > 649) {
-      marginLeft = ((screenWidth - 1024) / 2) + "px";
+    // if (screenWidth < 1024 && screenWidth > 649) {
+    //   marginLeft = ((screenWidth - 1024) / 2) + "px";
       
-      const noteBgElements = this.el.nativeElement.querySelectorAll('.notebg');
-      noteBgElements.forEach((element: HTMLElement) => {
-        this.renderer.setStyle(element, 'margin-left', marginLeft);
-      });
-    }
+    //   const noteBgElements = this.el.nativeElement.querySelectorAll('.notebg');
+    //   noteBgElements.forEach((element: HTMLElement) => {
+    //     this.renderer.setStyle(element, 'margin-left', marginLeft);
+    //   });
+    // }
   }
 }

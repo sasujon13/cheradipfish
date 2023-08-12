@@ -11,7 +11,7 @@
   .badge2{
     font-size: 12px; 
     color: yellow; 
-    z-index: 101; 
+    z-index: 100; 
     margin-right: -22px;
     margin-top: -25px;
     font-family: Roboto Thin;
@@ -25,7 +25,7 @@
   margin: 0;
   padding: 0;
   right: 0;
-  z-index: 98;
+  z-index: 99;
   list-style: none;
   display: flex;
   position: absolute;
@@ -62,7 +62,7 @@ a:hover{
   position: fixed;
   width: 100%;
   max-width: 1920px;
-  z-index: 97;
+  z-index: 98;
 }
 
 .menu li {
@@ -164,7 +164,7 @@ i.fa-bars{
     top: 18px;
     font-size: 28px !important;
     display: block;
-    z-index: 97;
+    z-index: 101;
   }
   .menu.active {
       display: flex;
@@ -174,7 +174,7 @@ i.fa-bars{
       right: 0;
       background-color: teal;
       padding: 10px;
-      z-index: 99;
+      z-index: 102;
   }
 
   .menu.active li {
