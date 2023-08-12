@@ -10,6 +10,7 @@ export class CartComponent implements OnInit {
 
   public products : any = [];
   public grandTotal !: number;
+  public grandDiscount !: number;
   constructor(private cartService : CartService) { }
 
   ngOnInit(): void {
@@ -19,7 +20,8 @@ export class CartComponent implements OnInit {
     this.cartService.getCartProducts()
     .subscribe((res: any)=>{
       this.products = res;
-      this.grandTotal = this.cartService.getTotalPrice();
+      this.grandTotal = this.cartService.grandTotal();
+      this.grandDiscount = this.cartService.grandDiscount();
     })
   }
   removeCartItem(item: any){
@@ -30,14 +32,26 @@ export class CartComponent implements OnInit {
   }
   increaseQuantity(item: any) {
     this.cartService.changeQuantity(item.id, 1); // Increase quantity by 1
-    this.grandTotal = this.cartService.getTotalPrice();
+    this.grandTotal = this.cartService.grandTotal();
+    this.grandDiscount = this.cartService.grandDiscount();
   }
 
   decreaseQuantity(item: any) {
     if (item.quantity > 1) {
       this.cartService.changeQuantity(item.id, -1); // Decrease quantity by 1 if greater than 1
-      this.grandTotal = this.cartService.getTotalPrice();
+      this.grandTotal = this.cartService.grandTotal();
+      this.grandDiscount = this.cartService.grandDiscount();
     }
+  }
+  savedPrice(item: any): number {
+    return Math.ceil(item.quantity * (item.price * 100 / (100 - item.discount) - item.price));
+  }
+  
+  totalPrice(item: any): number {
+    return Math.ceil(item.quantity * item.price);
+  }
+  productPrice(item: any): number {
+    return Math.ceil(item.price * 100 / (100 - item.discount));
   }
 
 }

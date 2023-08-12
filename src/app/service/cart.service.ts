@@ -32,15 +32,22 @@ export class CartService {
   addtocart(product: any) {
     this.cartItemList.push(product);
     this.updateCartAndStorage();
-    this.getTotalPrice();
+    this.grandTotal();
   }
 
-  getTotalPrice(): number {
+  grandTotal(): number {
     let grandTotal = 0;
     this.cartItemList.forEach((a: any) => {
       grandTotal += a.total * a.quantity;
     });
-    return grandTotal;
+    return Math.ceil(grandTotal);
+  }
+  grandDiscount(): number {
+    let grandDiscount = 0;
+    this.cartItemList.forEach((a: any) => {
+      grandDiscount += (a.total / ((100 - a.discount) / 100)) * a.quantity;
+    });
+    return Math.ceil(grandDiscount);
   }
 
   removeCartItem(product: any) {
@@ -73,10 +80,10 @@ export class CartService {
     const item = this.cartItemList.find(item => item.id === productId);
     if (item) {
       item.quantity += change;
-      this.calculateTotalPrice();
+      this.totalPrice();
     }
   }
-  calculateTotalPrice() {
+  totalPrice() {
     let totalPrice = 0;
     this.cartItemList.forEach(item => {
       totalPrice += item.quantity * item.price;

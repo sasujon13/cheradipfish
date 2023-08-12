@@ -1,3 +1,22 @@
+.caution-box {
+  position: relative;
+  width: 3px; /* Adjust width as needed */
+  height: 10px; /* Adjust height as needed */
+  background-color: red;
+  /* clip-path: polygon(50% 0%, 0% 100%, 100% 100%); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin-top: -20px;
+  margin-left: 5px;
+}
+
+.fa-exclamation-circle {
+  color: teal;
+  font-size: 15px;
+  /* margin-top: -15px; */
+}
 
 .badge{
     font-size: 12px; 

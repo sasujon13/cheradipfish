@@ -101,4 +101,7 @@ export class ProductsComponent implements OnInit {
   filter(size: string) {
     this.filterCategory = this.productList.filter((a: any) => a.size === size || size === '');
   }
+  productPrice(item: any): number {
+    return Math.ceil(item.price * 100 / (100 - item.discount));
+  }
 }

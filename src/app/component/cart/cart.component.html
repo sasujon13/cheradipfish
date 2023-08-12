@@ -23,21 +23,21 @@
                             <td>{{item.name}} - {{item.code}}<br>({{item.bangla_name}})</td>
                             <td><img style="width: 100px;" src="{{item.image}}" alt=""></td>
                             <td style="width: 10%;">{{item.weight}} kg</td>
-                            <th style="width: 10%;">{{item.price*1.25}} /=</th>
+                            <th style="width: 10%;">{{productPrice(item)}} /=</th>
                             <td style="width: 10%;">
                             <b class="decreaseQuantity idq" (click)=decreaseQuantity(item)>--</b>
                                 &nbsp;&nbsp; {{item.quantity}} &nbsp;&nbsp;
                                 <b class="increaseQuantity idq" (click)=increaseQuantity(item)>+</b>
                             </td>
-                            <th style="width: 12%;">{{item.total*0.25*item.quantity}} /=</th>
-                            <th style="width: 10%;">{{item.total*item.quantity}} /=</th>
+                            <th style="width: 12%;">{{ savedPrice(item) }} /=</th>
+                            <th style="width: 10%;">{{ totalPrice(item) }} /=</th>
                             <td>
                                 <button (click)="removeCartItem(item)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="5"></td>
-                            <td colspan="2" style="text-align: right;"><strong>Grand Total :</strong></td><td><strong>{{grandTotal}} tk</strong></td>
+                            <td colspan="2" style="text-align: right;"><strong>Grand Total :</strong></td><td colspan="2" style="text-align: left;"><strong>{{grandTotal}} tk</strong><sub> @<del> {{ grandDiscount }}</del> tk Saved <b>{{ grandDiscount - grandTotal }}</b> tk</sub></td>
                         </tr>
                         <tr>
                             <td></td>

@@ -10,7 +10,9 @@
     </div>
     <ul class="menu" [class.active]="menuActive" [@flyInOut] (click)="closeMenu()">
         <li class="menu_item"><a [routerLink]="['']" routerLinkActive=""><i class="fa fa-home"></i>Products</a></li>
-        <li class="menu_item"><a [routerLink]="['blog']" routerLinkActive="blog"><i class="fa fa-pencil-square-o"></i>Blog</a></li>
+        <li class="menu_item"><a [routerLink]="['blog']" routerLinkActive="blog"><i class="fa fa-pencil-square-o"></i><div class="caution-box">
+          <i class="fa fa-exclamation-circle"></i>
+        </div></a></li>
         <li class="menu_item"><a [routerLink]="['faqs']" routerLinkActive="faqs"><i class="fa fa-question-circle"></i>FAQs</a></li>
         <li class="menu_item"><a [routerLink]="['about_us']" routerLinkActive="about_us"><i class="fa fa-info-circle"></i>About Us</a></li>
         <li class="menu_item"><a [routerLink]="['contact_us']" routerLinkActive="contact_us"><i class="fa fa-envelope"></i>Contact Us</a></li>
