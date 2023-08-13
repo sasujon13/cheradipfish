@@ -1,10 +1,57 @@
 <div class="order">
-<button routerLink="/order" class="btn btn2 btn-success">Previous Order</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button routerLink="/order" class="btn btn2 btn-success">Current Order</button>
+    <button routerLink="/order" class="btn previous_order btn2 btn-success">Previous
+        Order</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button routerLink="/order"
+        class="btn current_order btn2 btn-success">Current Order</button>
 </div>
-
 <ng-container *ngIf="products.length !=0">
+    <div class="user-details">
+        <div class="container containerTop">
+            <h3>Customer Details</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="userName">User Name</label>
+                        <input type="text" class="form-control" id="userName" [(ngModel)]="userName" name="userName">
+                    </div>
+                    <div class="form-group">
+                        <label for="mobileNo">Mobile No</label>
+                        <input type="text" class="form-control" id="mobileNo" [(ngModel)]="mobileNo" name="mobileNo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="address-details">
+        <div class="container">
+            <h3>Address Details</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <!-- location-form.component.html -->
+<select [(ngModel)]="selectedDivision" (ngModelChange)="onDivisionChange()">
+    <option value="">Select Division</option>
+    <option *ngFor="let division of divisions" [value]="division">{{ division }}</option>
+  </select>
+  
+  <select [(ngModel)]="selectedDistrict" (ngModelChange)="onDistrictChange()" [disabled]="!selectedDivision">
+    <option value="">Select District</option>
+    <option *ngFor="let district of districts" [value]="district">{{ district }}</option>
+  </select>
+  
+  <select [(ngModel)]="selectedThana" [disabled]="!selectedDistrict">
+    <option value="">Select Thana</option>
+    <option *ngFor="let thana of thanas" [value]="thana">{{ thana }}</option>
+  </select>
+  
+                        <textarea class="form-control" id="address" [(ngModel)]="address" name="address"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
-        <h3> Hi, Here is you Cart Details...</h3>
+        <h3> Order Details...</h3>
         <div class="card-table">
             <div class="cart-product">
                 <table class="table table-responsive">
@@ -29,35 +76,66 @@
                             <td style="width: 10%;">{{item.weight}} kg</td>
                             <th style="width: 10%;">{{productPrice(item)}} /=</th>
                             <td style="width: 10%;">
-                            <b class="decreaseQuantity idq" (click)=decreaseQuantity(item)>--</b>
+                                <b class="decreaseQuantity idq" (click)=decreaseQuantity(item)>--</b>
                                 &nbsp;&nbsp; {{item.quantity}} &nbsp;&nbsp;
                                 <b class="increaseQuantity idq" (click)=increaseQuantity(item)>+</b>
                             </td>
                             <th style="width: 12%;">{{ savedPrice(item) }} /=</th>
                             <th style="width: 10%;">{{ totalPrice(item) }} /=</th>
                             <td>
-                                <button (click)="removeCartItem(item)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                <button (click)="removeCartItem(item)" class="btn btn-danger"><i
+                                        class="fas fa-trash-alt"></i></button>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="5"></td>
-                            <td colspan="2" style="text-align: right;"><strong>Grand Total :</strong></td><td colspan="2" style="text-align: left;"><strong>{{grandTotal}} tk</strong><sub> @<del> {{ grandDiscount }}</del> tk Saved <b>{{ grandDiscount - grandTotal }}</b> tk</sub></td>
+                            <td colspan="2" style="text-align: right;"><strong>Grand Total :</strong></td>
+                            <td colspan="2" style="text-align: left;"><strong>{{grandTotal}} tk</strong><sub> @<del> {{
+                                        grandDiscount }}</del> tk Saved <b>{{ grandDiscount - grandTotal }}</b> tk</sub>
+                            </td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td colspan="2" style="text-align: left;"><button (click)="emptycart()" class="btn btn-danger">Empty Cart</button></td>
+                            <td colspan="2" style="text-align: left;"><button (click)="emptycart()"
+                                    class="btn btn-danger">Empty Cart</button></td>
                             <td colspan="2"></td>
-                            <td colspan="2"><button routerLink="/products" class="btn btn-primary">Shop More</button></td>
-                            <td colspan="2" style="text-align: left;"><button routerLink="/order" class="btn btn-success">Checkout</button></td>
+                            <td colspan="2"><button routerLink="/products" class="btn btn-primary">Shop More</button>
+                            </td>
+                            <td colspan="2" style="text-align: left;"><button routerLink="/order"
+                                    class="btn btn-success">Checkout</button></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+    <div class="payment-method">
+        <div class="container">
+            <h3>Payment Method</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">আপনার সুবিধামত নিচের যেকোন একটি পেমেন্ট পদ্ধতি নির্বাচন করুন। অর্ডারটি কনফার্ম করতে ন্যূনতম ১০০ টাকা Send  Money / Transfer Balance করে Transaction ID প্রদান করুন। <br>NB: পণ্য কুরিয়ারে পাঠানোর পূর্বে অর্ডার বাতিল করলে পূর্ণ টাকা ফেরত পাবেন। <br><br>
+                        <label for="paymentMethod">Select Payment Method</label>
+                        <select class="form-control" id="paymentMethod" [(ngModel)]="paymentMethod"
+                            name="paymentMethod">
+                            <option value="cod">Cash on Delivery</option>
+                            <option value="bkash">bKash</option>
+                            <option value="nagad">Nagad</option>
+                            <option value="dbbl">DBBL</option>
+                            <option value="other">Others</option>
+                        </select>
+                        <label for="trxid">Transaction ID</label><input type="text" value="Enter Transaction ID">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="confirm-order">
+        <div class="container">
+            <button class="btn btn-success" (click)="confirmOrder()">Confirm Order</button>
+        </div>
+    </div>
 </ng-container>
-
-
 <ng-container *ngIf="products.length ==0">
     <div class="container">
         <div class="card">
@@ -71,4 +149,7 @@
         </div>
     </div>
 </ng-container>
-<div class="copyright" style="text-align: center; font-size: 12px; background-color: teal; padding: 7px 10px 5px 10px; margin-top: 100px;">&copy;All rights reserved by cheradip.com</div> 
+<div class="copyright"
+    style="text-align: center; font-size: 12px; background-color: teal; padding: 7px 10px 5px 10px; margin-top: 100px;">
+    &copy;All rights reserved by cheradip.com
+</div>
