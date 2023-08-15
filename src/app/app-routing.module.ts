@@ -10,6 +10,9 @@ import { FaqsComponent } from './component/faqs/faqs.component';
 import { LoginComponent } from './component/login/login.component';
 import { SignupComponent } from './component/signup/signup.component';
 import { ChoiceComponent } from './component/choice/choice.component';
+import { AuthGuard } from './service/authgard.service';
+import { Router } from '@angular/router';
+import { AuthComponent } from './component/auth/auth.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'products',pathMatch:'full'},
@@ -21,12 +24,28 @@ const routes: Routes = [
   {path:'choice', component: ChoiceComponent},
   {path:'login', component: LoginComponent},
   {path:'signup', component: SignupComponent},
-  {path:'order', component: OrderComponent},
-  {path:'cart', component: CartComponent}
+  { path: 'order', component: OrderComponent, canActivate: [AuthGuard] },
+  {path:'cart', component: CartComponent},
+  {path: 'auth', component: AuthComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+
+export class AppRoutingModule {
+  constructor(private router: Router) {}
+
+onLoginSuccess() {
+  // Perform login logic
+  // Then redirect to order page
+  this.router.navigate(['/order']);
+}
+
+onSignupSuccess() {
+  // Perform signup logic
+  // Then redirect to order page
+  this.router.navigate(['/order']);
+}
+ }

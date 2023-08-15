@@ -18,6 +18,7 @@ import { FilterPipe } from './shared/filter.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChoiceComponent } from './component/choice/choice.component';
+import { AuthComponent } from './component/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ChoiceComponent } from './component/choice/choice.component';
     LoginComponent,
     SignupComponent,
     FilterPipe,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,

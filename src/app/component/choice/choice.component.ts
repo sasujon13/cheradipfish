@@ -18,26 +18,13 @@ export class ChoiceComponent implements OnInit {
   
     SIZE = [
       { label: 'All', value: '' },
-      { label: 'XL', value: 'xl' },
-      { label: 'L', value: 'l' },
-      { label: 'M', value: 'm' },
-      { label: 'S', value: 's' },
-      { label: 'XS', value: 'xs' }
+      { label: 'XXL', value: 'XXL' },
+      { label: 'XL', value: 'XL' },
+      { label: 'L', value: 'L' },
+      { label: 'M', value: 'M' },
+      { label: 'S', value: 'S' },
+      { label: 'XS', value: 'XS' }
     ];
-  
-    // constructor(private choiceService: ChoiceService, private cartService: CartService) { }
-  
-    // ngOnInit(): void {
-    //   this.choiceService.getChoiceProducts()
-    //     .subscribe((res: any)=>{
-    //       this.products = res;
-    //       this.filter('');
-    //     })
-  
-    //   this.choiceService.search.subscribe((val: any) => {
-    //     this.searchKey = val;
-    //   });
-    // }
     constructor(private cartService: CartService, private choiceService: ChoiceService) { }
     ngOnInit(): void {
     document.addEventListener('contextmenu', function (event) {
@@ -56,15 +43,17 @@ export class ChoiceComponent implements OnInit {
               a.love = true;
             }
             if (a.size === "XS") {
-              a.size = "xs";
+              a.size = "XS";
             } else if (a.size === "S") {
-              a.size = "s";
+              a.size = "S";
             } else if (a.size === "M") {
-              a.size = "m";
+              a.size = "M";
             } else if (a.size === "L") {
-              a.size = "l";
+              a.size = "L";
             } else if (a.size === "XL") {
-              a.size = "xl";
+              a.size = "XL";
+            } else if (a.size === "XXL") {
+              a.size = "XXL";
             } 
             a.add_to_cart = cartState === 'true'; 
             a.add_to_choice = choiceState === 'true';                 
@@ -74,15 +63,17 @@ export class ChoiceComponent implements OnInit {
           this.cartProductList.forEach((a: any) => {
             const cartState = localStorage.getItem(`cartState_${a.id}`);
             if (a.size === "XS") {
-              a.size = "xs";
+              a.size = "XS";
             } else if (a.size === "S") {
-              a.size = "s";
+              a.size = "S";
             } else if (a.size === "M") {
-              a.size = "m";
+              a.size = "M";
             } else if (a.size === "L") {
-              a.size = "l";
+              a.size = "L";
             } else if (a.size === "XL") {
-              a.size = "xl";
+              a.size = "XL";
+            }  else if (a.size === "XXL") {
+              a.size = "XXL";
             } 
             a.add_to_cart = cartState === 'true';                  
             Object.assign(a, { quantity: 1, total: a.price });
@@ -91,15 +82,17 @@ export class ChoiceComponent implements OnInit {
           this.choiceProductList.forEach((a: any) => {
             const choiceState = localStorage.getItem(`choiceState_${a.id}`);
             if (a.size === "XS") {
-              a.size = "xs";
+              a.size = "XS";
             } else if (a.size === "S") {
-              a.size = "s";
+              a.size = "S";
             } else if (a.size === "M") {
-              a.size = "m";
+              a.size = "M";
             } else if (a.size === "L") {
-              a.size = "l";
+              a.size = "L";
             } else if (a.size === "XL") {
-              a.size = "xl";
+              a.size = "XL";
+            }else if (a.size === "XXL") {
+              a.size = "XXL";
             } 
             a.add_to_choice = choiceState === 'true';                  
             Object.assign(a, { quantity: 1, total: a.price });

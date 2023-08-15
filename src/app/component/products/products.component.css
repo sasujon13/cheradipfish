@@ -72,7 +72,7 @@ h3.title {
   top: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0, 128, 128, 0.5);
+  background-color: rgb(105, 185, 185);
   padding: 7px;
   text-align: center;
   vertical-align:middle;
@@ -95,7 +95,7 @@ p.price {
   color: #ffffff;
   left: 0;
   right: 0;
-  background-color: rgba(0, 128, 128, 0.5);
+  background-color: rgb(105, 185, 185);
   padding: 5px;
   text-align: center;
 }
@@ -130,6 +130,7 @@ img {
     box-sizing: border-box;
     margin: 20px;
     width: 80%;
+    user-select: none;
   }
 
 .item_footer {

@@ -19,16 +19,20 @@ export class ProductsComponent implements OnInit {
 
   SIZE = [
     { label: 'All', value: '' },
-    { label: 'XL', value: 'xl' },
-    { label: 'L', value: 'l' },
-    { label: 'M', value: 'm' },
-    { label: 'S', value: 's' },
-    { label: 'XS', value: 'xs' }
+    { label: 'XXL', value: 'XXL' },
+    { label: 'XL', value: 'XL' },
+    { label: 'L', value: 'L' },
+    { label: 'M', value: 'M' },
+    { label: 'S', value: 'S' },
+    { label: 'XS', value: 'XS' }
   ];
 
   constructor(private api: ApiService, private cartService: CartService, private choiceService: ChoiceService) { }
 
   ngOnInit(): void {
+    document.addEventListener('contextmenu', function (event) {
+      event.preventDefault();
+    });
     this.api.getProducts()
       .subscribe(res => {
         this.productList = res;
@@ -42,15 +46,17 @@ export class ProductsComponent implements OnInit {
             a.love = true;
           }
           if (a.size === "XS") {
-            a.size = "xs";
+            a.size = "XS";
           } else if (a.size === "S") {
-            a.size = "s";
+            a.size = "S";
           } else if (a.size === "M") {
-            a.size = "m";
+            a.size = "M";
           } else if (a.size === "L") {
-            a.size = "l";
+            a.size = "L";
           } else if (a.size === "XL") {
-            a.size = "xl";
+            a.size = "XL";
+          } else if (a.size === "XXL") {
+            a.size = "XXL";
           }
           a.add_to_cart = cartState === 'true';
           a.add_to_choice = choiceState === 'true';

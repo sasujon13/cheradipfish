@@ -1,0 +1,17 @@
+<div>
+    <h2>{{ isLoginMode ? 'Login' : 'Signup' }}</h2>
+    <form [formGroup]="authForm" (ngSubmit)="onAuth()">
+      <label>Email</label>
+      <input type="email" formControlName="email" />
+  
+      <label>Password</label>
+      <input type="password" formControlName="password" />
+  
+      <button type="submit">{{ isLoginMode ? 'Login' : 'Signup' }}</button>
+    </form>
+  
+    <button (click)="toggleMode()">
+      {{ isLoginMode ? 'Switch to Signup' : 'Switch to Login' }}
+    </button>
+  </div>
+  

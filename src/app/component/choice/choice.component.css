@@ -121,6 +121,7 @@ img {
     box-sizing: border-box;
     margin: 20px;
     width: 80%;
+    user-select: none;
   }
 
 .item_footer {
