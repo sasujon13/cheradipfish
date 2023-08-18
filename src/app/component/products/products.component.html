@@ -1,40 +1,62 @@
 <div class="card-top" *ngIf="showCard">
   <ul class="container d-flex filterItem">
-    <li class="item" (click)="filter('')">
+    <li [ngClass]="{'selected': selectedFilter === ''}" class="item" (click)="filterTypes('')">
       <a>
         <h6>All</h6>
       </a>
     </li>
-    <li class="item" (click)="filter('XXL')">
+    <li [ngClass]="{'selected': selectedFilter === 'Soft'}" class="item" (click)="filterTypes('Soft')">
       <a>
-        <h6>XXL</h6>
+        <h6>Soft</h6>
       </a>
     </li>
-    <li class="item" (click)="filter('XL')">
+    <li [ngClass]="{'selected': selectedFilter === 'Dry'}" class="item" (click)="filterTypes('Dry')">
       <a>
-        <h6>XL</h6>
+        <h6>Dry</h6>
       </a>
     </li>
-    <li class="item" (click)="filter('L')">
+    <li class="item">
       <a>
-        <h6>L</h6>
+        <h6>Size:</h6>
       </a>
-    </li>
-    <li class="item" (click)="filter('M')">
-      <a>
-        <h6>M</h6>
-      </a>
-    </li>
-    <li class="item" (click)="filter('S')">
-      <a>
-        <h6>S</h6>
-      </a>
-    </li>
-    <li class="item" (click)="filter('XS')">
-      <a>
-        <h6>XS</h6>
-      </a>
-    </li>
+    <select class="itemSize" (change)="onSizeChange($event)">
+      <option class="itemSize" value="">
+        <a>
+          <h6>ALL</h6>
+        </a>
+      </option>
+      <option class="itemSize" value="XXL">
+        <a>
+          <h6>XXL</h6>
+        </a>
+      </option>
+      <option class="itemSize" value="XL">
+        <a>
+          <h6>XL</h6>
+        </a>
+      </option>
+      <option class="itemSize" value="L">
+        <a>
+          <h6>L</h6>
+        </a>
+      </option>
+      <option class="itemSize" value="M">
+        <a>
+          <h6>M</h6>
+        </a>
+      </option>
+      <option class="itemSize" value="S">
+        <a>
+          <h6>S</h6>
+        </a>
+      </option>
+      <option class="itemSize" value="XS">
+        <a>
+          <h6>XS</h6>
+        </a>
+      </option>
+  </select>
+  </li>
   </ul>
 </div>
 <img src="../../../assets/images/filter.svg" class="clickable-image filter">

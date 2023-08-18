@@ -1,3 +1,23 @@
+
+select.itemSize {
+  border: none;       
+  outline: none;
+  background-color: transparent;
+  margin-top: -32px;
+  display: flex;
+  margin-left: 40px;
+  margin-right: -10px;
+  padding: 4px 10px 4px 0;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
+}
+select.itemSize:hover{
+  border: none;       
+  outline: none;
+  background-color: rgb(105, 185, 185);
+}
+
 .product-list-shadow {
   display: flex;
   flex-wrap: wrap;
@@ -62,7 +82,11 @@ ul.filterItem li {
   margin-top: 72px;
   margin-left: 30px;
   left: 0;
+  user-select: none;
   cursor: pointer;
+}
+ul.filterItem li:hover{
+  background-color: teal;
 }
 h3.title {
   color: #ffffff;
@@ -230,4 +254,7 @@ img.filter{
   .item-list li {
     width: 21%;
   }
+}
+li.item.selected {
+  background-color: teal;
 }

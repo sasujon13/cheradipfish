@@ -9,6 +9,13 @@ import { ChoiceService } from 'src/app/service/choice.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+  filterType: string = '';
+  filterSize: string = '';
+  selectedFilter: string = '';
+  onSizeChange(event: any) {
+    const selectedSize = event.target.value;
+    this.filter(selectedSize);
+  }
   showCard: boolean = true;
   showChoice: boolean = true;
   public productList: any;
@@ -25,6 +32,11 @@ export class ProductsComponent implements OnInit {
     { label: 'M', value: 'M' },
     { label: 'S', value: 'S' },
     { label: 'XS', value: 'XS' }
+  ];
+
+  TYPES = [
+    { label: 'Dry', value: 'Dry' },
+    { label: 'Soft', value: 'Soft' }
   ];
 
   constructor(private api: ApiService, private cartService: CartService, private choiceService: ChoiceService) { }
@@ -104,8 +116,21 @@ export class ProductsComponent implements OnInit {
     this.showCard = true;
     this.showChoice = true;
   }
-  filter(size: string) {
-    this.filterCategory = this.productList.filter((a: any) => a.size === size || size === '');
+  filterTypes(types: string) {
+    this.selectedFilter = types;
+    this.filterType = types;
+    this.filter(this.filterSize);
+  }
+
+  filter(filter: string) {
+    this.selectedFilter = filter;
+    if (this.filterType) {
+      this.filterCategory = this.productList.filter((a: any) => 
+        (a.size === filter || filter === '') && (a.types === this.filterType || this.filterType === '')
+      );
+    } else {
+      this.filterCategory = this.productList.filter((a: any) => a.size === filter || filter === '');
+    }
   }
   productPrice(item: any): number {
     return Math.ceil(item.price * 100 / (100 - item.discount));
