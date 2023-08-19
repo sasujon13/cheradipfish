@@ -1,13 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/service/api.service';
 import { CartService } from 'src/app/service/cart.service';
 import { ChoiceService } from 'src/app/service/choice.service';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
+
+@NgModule({
+  declarations: [ProductsComponent], // Make sure ProductsComponent is in this array
+  imports: [
+    CommonModule, // Add CommonModule here
+    // ... other imports
+  ],
+})
+
 export class ProductsComponent implements OnInit {
   selectedType: string = '';
   selectedSize: string = '';
