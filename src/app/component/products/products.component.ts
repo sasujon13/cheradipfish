@@ -9,13 +9,11 @@ import { ChoiceService } from 'src/app/service/choice.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+  selectedType: string = '';
+  selectedSize: string = '';
   filterType: string = '';
   filterSize: string = '';
   selectedFilter: string = '';
-  onSizeChange(event: any) {
-    const selectedSize = event.target.value;
-    this.filter(selectedSize);
-  }
   showCard: boolean = true;
   showChoice: boolean = true;
   public productList: any;
@@ -116,13 +114,30 @@ export class ProductsComponent implements OnInit {
     this.showCard = true;
     this.showChoice = true;
   }
-  filterTypes(types: string) {
-    this.selectedFilter = types;
-    this.filterType = types;
-    this.filter(this.filterSize);
+  filterTypes(type: string) {
+    this.selectedType = type;
+    this.applyCombinedFilter();
+  }
+  
+  onSizeChange(event: any) {
+    this.selectedSize = event.target.value;
+    this.applyCombinedFilter();
+  }
+  
+  applyCombinedFilter() {
+    if (this.selectedType === '') {
+      this.filterCategory = this.productList;
+    } else {
+      this.filterCategory = this.productList.filter((a: any) => a.types === this.selectedType);
+    }
+  
+    if (this.selectedSize !== '') {
+      this.filterCategory = this.filterCategory.filter((a: any) => a.size === this.selectedSize);
+    }
   }
 
   filter(filter: string) {
+    this.selectedSize = 'All';
     this.selectedFilter = filter;
     if (this.filterType) {
       this.filterCategory = this.productList.filter((a: any) => 

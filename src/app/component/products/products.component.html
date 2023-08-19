@@ -1,16 +1,16 @@
 <div class="card-top" *ngIf="showCard">
   <ul class="container d-flex filterItem">
-    <li [ngClass]="{'selected': selectedFilter === ''}" class="item" (click)="filterTypes('')">
+    <li [ngClass]="{'selected': selectedType === ''}" class="item" (click)="filterTypes('')">
       <a>
         <h6>All</h6>
       </a>
     </li>
-    <li [ngClass]="{'selected': selectedFilter === 'Soft'}" class="item" (click)="filterTypes('Soft')">
+    <li [ngClass]="{'selected': selectedType === 'Soft'}" class="item" (click)="filterTypes('Soft')">
       <a>
         <h6>Soft</h6>
       </a>
     </li>
-    <li [ngClass]="{'selected': selectedFilter === 'Dry'}" class="item" (click)="filterTypes('Dry')">
+    <li [ngClass]="{'selected': selectedType === 'Dry'}" class="item" (click)="filterTypes('Dry')">
       <a>
         <h6>Dry</h6>
       </a>
@@ -19,12 +19,12 @@
       <a>
         <h6>Size:</h6>
       </a>
-    <select class="itemSize" (change)="onSizeChange($event)">
-      <option class="itemSize" value="">
-        <a>
-          <h6>ALL</h6>
-        </a>
-      </option>
+      <select class="itemSize" (change)="onSizeChange($event)">
+        <option class="itemSize" value="" selected>
+          <a>
+            <h6>ALL</h6>
+          </a>
+        </option>
       <option class="itemSize" value="XXL">
         <a>
           <h6>XXL</h6>

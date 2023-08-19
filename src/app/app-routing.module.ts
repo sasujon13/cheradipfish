@@ -24,7 +24,7 @@ const routes: Routes = [
   {path:'choice', component: ChoiceComponent},
   {path:'login', component: LoginComponent},
   {path:'signup', component: SignupComponent},
-  { path: 'order', component: OrderComponent, canActivate: [AuthGuard] },
+  {path: 'order', component: OrderComponent, canActivate: [AuthGuard]},
   {path:'cart', component: CartComponent},
   {path: 'auth', component: AuthComponent}
 ];

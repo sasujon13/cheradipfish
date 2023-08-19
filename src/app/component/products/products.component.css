@@ -256,5 +256,6 @@ img.filter{
   }
 }
 li.item.selected {
-  background-color: teal;
+  background-color: teal !important;
+  color: #ffffff;
 }
